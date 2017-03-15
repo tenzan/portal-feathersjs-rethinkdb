@@ -17,6 +17,8 @@ const middleware = require('./middleware');
 const services = require('./services');
 const appHooks = require('./hooks');
 
+const rethinkdb = require('./rethinkdb');
+
 const app = feathers();
 
 // Load app configuration
@@ -33,6 +35,7 @@ app.use('/', feathers.static(app.get('public')));
 
 // Set up Plugins and providers
 app.configure(hooks());
+app.configure(rethinkdb);
 app.configure(rest());
 app.configure(socketio());
 
